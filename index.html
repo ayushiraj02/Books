@@ -1,0 +1,230 @@
+<!-- http://localhost:8000 -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>श्रील प्रभुपाद जी की पुस्तकें</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- PDF.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+<header class="top-header">
+<img src="images/iskcon-logo.png" class="logo-left">
+
+<div class="title-area">    
+<h1>श्रील प्रभुपाद जी की पुस्तकें</h1>
+<p>मोबाइल पर पढ़ने के लिए सरल सूची</p>
+</div>
+
+<img src="images/prabhupada.jpg" class="logo-right">
+</header>
+
+<div class="book-list">
+
+<a href="#" onclick="openPDF('books/anupam-uphar.pdf')">अनुपम उपहार</a>
+<a href="#" onclick="openPDF('books/brahma-sahita.pdf')">ब्रह्म संहिता</a>
+<a href="#" onclick="openPDF('books/chaitanya-mahaprabhu.pdf')">चैतन्य महाप्रभु</a>
+<a href="#" onclick="openPDF('books/geeta-sar.pdf')">गीता सार</a>
+<a href="#" onclick="openPDF('books/guru-tatha-shishya.pdf')">गुरु तथा शिष्य</a>
+<a href="#" onclick="openPDF('books/gyan-ki-talwar.pdf')">ज्ञान की तलवार</a>
+<a href="#" onclick="openPDF('books/isopanishad.pdf')">ईशोपनिषद</a>
+<a href="#" onclick="openPDF('books/janma-aur-mrutyu-se-pare.pdf')">जन्म और मृत्यु से परे</a>
+<a href="#" onclick="openPDF('books/kartik-mahimamrit.pdf')">कार्तिक महिमा अमृत</a>
+<a href="#" onclick="openPDF('books/krishnabhawnamrit-ki-prapti.pdf')">कृष्णभावनामृत की प्राप्ति</a>
+<a href="#" onclick="openPDF('books/krishnabhawnamrit-me-brahmacharya.pdf')">कृष्णभावनामृत में ब्रह्मचर्य</a>
+<a href="#" onclick="openPDF('books/krishna-ki-or.pdf')">कृष्ण की ओर</a>
+<a href="#" onclick="openPDF('books/kunti-maharani.pdf')">कुंती महारानी</a>
+<a href="#" onclick="openPDF('books/mukund-mala-stotra.pdf')">मुकुंद माला स्तोत्र</a>
+<a href="#" onclick="openPDF('books/narad-bhakti-sutra.pdf')">नारद भक्ति सूत्र</a>
+<a href="#" onclick="openPDF('books/prakrati-ke-niyam.pdf')">प्रकृति के नियम</a>
+<a href="#" onclick="openPDF('books/pralhad-maharaj-ke-divya-updesh.pdf')">प्रह्लाद महाराज के दिव्य उपदेश</a>
+<a href="#" onclick="openPDF('books/prem-pradip.pdf')">प्रेम प्रदीप</a>
+<a href="#" onclick="openPDF('books/punaragaman.pdf')">पुनरागमन</a>
+<a href="#" onclick="openPDF('books/purna-prashn-purn-uttar.pdf')">पूर्ण प्रश्न पूर्ण उत्तर</a>
+<a href="#" onclick="openPDF('books/rajvidya.pdf')">राजविद्या</a>
+<a href="#" onclick="openPDF('books/rashraj-krishna.pdf')">रसराज कृष्ण</a>
+<a href="#" onclick="openPDF('books/sarvottam-yog-paddhati.pdf')">सर्वोत्तम योग पद्धति</a>
+<a href="#" onclick="openPDF('books/shreemati-radharani.pdf')">श्रीमती राधारानी</a>
+<a href="#" onclick="openPDF('books/sri-upadesamrita.pdf')">श्री उपदेशामृत</a>
+<a href="#" onclick="openPDF('books/hare-krishna-challenge.pdf')">हरे कृष्ण चैलेंज</a>
+<a href="#" onclick="openPDF('books/vaishnav-sadachar.pdf')">वैष्णव सदाचार</a>
+<a href="#" onclick="openPDF('books/vaishnav-geet.pdf')">वैष्णव गीत</a>
+
+</div>
+
+<!-- PDF Modal -->
+<div id="pdfModal" class="modal">
+<div class="modal-content">
+
+<div class="pdf-top-bar">
+<button onclick="downloadPDF()">Download</button>
+<span onclick="closePDF()" class="close-btn">&times;</span>
+</div>
+
+<div id="pdfLoader" class="pdf-loader">
+    <div class="spinner"></div>
+    <p id="loaderText"></p>
+</div>
+
+<div id="pdfContainer"></div>
+
+</div>
+</div>
+
+<footer class="footer-section">
+<div class="mahamantra-container">
+<div class="mahamantra-text">
+🙏 Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Rama Hare Rama Rama Rama Hare Hare 🙏
+</div>
+</div>
+
+<p class="haribol">हरि बोल 🙏</p>
+<p>सेवा में — आयुषी</p>
+</footer>
+
+<script>
+
+let currentPDF = '';
+let loaderInterval;
+
+/* ============================= */
+/* Loader Text Animation */
+/* ============================= */
+
+function startLoaderTextAnimation() {
+
+const textElement = document.getElementById("loaderText");
+
+const messages = [
+"एक पल भी व्यर्थ न करें...",
+"हरे कृष्ण महामंत्र बोलते रहें 🙏",
+"🙏 हरे कृष्ण, हरे कृष्ण, कृष्ण कृष्ण, हरे हरे ।  हरे राम, हरे राम, राम राम, हरे हरे।।  🙏"
+];
+
+let index = 0;
+textElement.innerText = messages[index];
+
+loaderInterval = setInterval(() => {
+index++;
+if (index >= messages.length) index = 0;
+textElement.innerText = messages[index];
+}, 2000); // 2 sec pause
+}
+
+function stopLoaderTextAnimation() {
+clearInterval(loaderInterval);
+}
+
+/* ============================= */
+/* Modal Functions */
+/* ============================= */
+
+function openPDF(pdfPath) {
+
+currentPDF = pdfPath;
+
+document.getElementById("pdfModal").style.display = "block";
+document.body.style.overflow = "hidden";
+
+startLoaderTextAnimation();   // 👈 start devotional text
+
+loadPDF(pdfPath);
+}
+
+function closePDF() {
+document.getElementById("pdfModal").style.display = "none";
+document.getElementById("pdfContainer").innerHTML = "";
+document.body.style.overflow = "auto";
+}
+
+function downloadPDF() {
+window.open(currentPDF, '_blank');
+}
+
+/* ============================= */
+/* PDF Loading */
+/* ============================= */
+
+async function loadPDF(url) {
+
+const loader = document.getElementById("pdfLoader");
+const container = document.getElementById("pdfContainer");
+
+loader.style.display = "block";
+container.innerHTML = "";
+
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+try {
+
+const loadingTask = pdfjsLib.getDocument(url);
+const pdf = await loadingTask.promise;
+
+/* Load First Page Fast */
+
+const firstPage = await pdf.getPage(1);
+const viewport = firstPage.getViewport({ scale: 1.2 });
+
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+
+canvas.height = viewport.height;
+canvas.width = viewport.width;
+
+container.appendChild(canvas);
+
+await firstPage.render({
+canvasContext: context,
+viewport: viewport
+}).promise;
+
+/* Hide Loader After First Page */
+loader.style.display = "none";
+stopLoaderTextAnimation();
+
+/* Load Remaining Pages */
+
+for (let pageNum = 2; pageNum <= pdf.numPages; pageNum++) {
+
+const page = await pdf.getPage(pageNum);
+const viewport = page.getViewport({ scale: 1.2 });
+
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+
+canvas.height = viewport.height;
+canvas.width = viewport.width;
+
+container.appendChild(canvas);
+
+await page.render({
+canvasContext: context,
+viewport: viewport
+}).promise;
+
+}
+
+} catch (error) {
+
+loader.style.display = "none";
+stopLoaderTextAnimation();
+
+container.innerHTML =
+"<p style='text-align:center;color:red;'>PDF खुलने में समस्या आ रही है।</p>";
+
+console.error(error);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
