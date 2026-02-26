@@ -1,107 +1,144 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>श्रील प्रभुपाद जी की पुस्तकें</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>श्रील प्रभुपाद जी की पुस्तकें</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- PDF.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
 <header class="top-header">
+<img src="images/iskcon-logo.png" class="logo-left">
 
-    <img src="images/iskcon-logo.png" class="logo-left">
+<div class="title-area">    
+<h1>श्रील प्रभुपाद जी की पुस्तकें</h1>
+<p>मोबाइल पर पढ़ने के लिए सरल सूची</p>
+</div>
 
-    <div class="title-area">    
-        <h1>श्रील प्रभुपाद जी की पुस्तकें</h1>
-        <p>मोबाइल पर पढ़ने के लिए सरल सूची</p>
-    </div>
-
-    <img src="images/prabhupada.jpg" class="logo-right">
-
+<img src="images/prabhupada.jpg" class="logo-right">
 </header>
 
 <div class="book-list">
 
-<a href="books/anupam-uphar.pdf#toolbar=1" target="_blank">अनुपम उपहार</a>
-
-<a href="books/brahma-sahita.pdf#toolbar=1" target="_blank">ब्रह्म संहिता</a>
-
-<a href="books/chaitanya-mahaprabhu.pdf#toolbar=1" target="_blank">चैतन्य महाप्रभु</a>
-
-<a href="books/geeta-sar.pdf#toolbar=1" target="_blank">गीता सार</a>
-
-<a href="books/guru-tatha-shishya.pdf#toolbar=1" target="_blank">गुरु तथा शिष्य</a>
-
-<a href="books/gyan-ki-talwar.pdf#toolbar=1" target="_blank">ज्ञान की तलवार</a>
-
-<a href="books/isopanishad.pdf#toolbar=1" target="_blank">ईशोपनिषद</a>
-
-<a href="books/janma-aur-mrutyu-se-pare.pdf#toolbar=1" target="_blank">जन्म और मृत्यु से परे</a>
-
-<a href="books/kartik-mahimamrit.pdf#toolbar=1" target="_blank">कार्तिक महिमा अमृत</a>
-
-<a href="books/krishnabhawnamrit-ki-prapti.pdf#toolbar=1" target="_blank">कृष्णभावनामृत की प्राप्ति</a>
-
-<a href="books/krishnabhawnamrit-me-brahmacharya.pdf#toolbar=1" target="_blank">कृष्णभावनामृत में ब्रह्मचर्य</a>
-
-<a href="books/krishna-ki-or.pdf#toolbar=1" target="_blank">कृष्ण की ओर</a>
-
-<a href="books/kunti-maharani.pdf#toolbar=1" target="_blank">कुंती महारानी</a>
-
-<a href="books/mukund-mala-stotra.pdf#toolbar=1" target="_blank">मुकुंद माला स्तोत्र</a>
-
-<a href="books/narad-bhakti-sutra.pdf#toolbar=1" target="_blank">नारद भक्ति सूत्र</a>
-
-<a href="books/prakrati-ke-niyam.pdf#toolbar=1" target="_blank">प्रकृति के नियम</a>
-
-<a href="books/pralhad-maharaj-ke-divya-updesh.pdf#toolbar=1" target="_blank">प्रह्लाद महाराज के दिव्य उपदेश</a>
-
-<a href="books/prem-pradip.pdf#toolbar=1" target="_blank">प्रेम प्रदीप</a>
-
-<a href="books/punaragaman.pdf#toolbar=1" target="_blank">पुनरागमन</a>
-
-<a href="books/purna-prashn-purn-uttar.pdf#toolbar=1" target="_blank">पूर्ण प्रश्न पूर्ण उत्तर</a>
-
-<a href="books/rajvidya.pdf#toolbar=1" target="_blank">राजविद्या</a>
-
-<a href="books/rashraj-krishna.pdf#toolbar=1" target="_blank">रसराज कृष्ण</a>
-
-<a href="books/sarvottam-yog-paddhati.pdf#toolbar=1" target="_blank">सर्वोत्तम योग पद्धति</a>
-
-<a href="books/shreemati-radharani.pdf#toolbar=1" target="_blank">श्रीमती राधारानी</a>
-
-<a href="books/sri-upadesamrita.pdf#toolbar=1" target="_blank">श्री उपदेशामृत</a>
-
-<a href="books/hare-krishna-challenge.pdf#toolbar=1" target="_blank">हरे कृष्ण चैलेंज</a>
-
-<a href="books/vaishnav-sadachar.pdf#toolbar=1" target="_blank">वैष्णव सदाचार</a>
-
-<a href="books/vaishnav-geet.pdf#toolbar=1" target="_blank">वैष्णव गीत</a>
+<a href="#" onclick="openPDF('books/anupam-uphar.pdf')">अनुपम उपहार</a>
+<a href="#" onclick="openPDF('books/brahma-sahita.pdf')">ब्रह्म संहिता</a>
+<a href="#" onclick="openPDF('books/chaitanya-mahaprabhu.pdf')">चैतन्य महाप्रभु</a>
+<a href="#" onclick="openPDF('books/geeta-sar.pdf')">गीता सार</a>
+<a href="#" onclick="openPDF('books/guru-tatha-shishya.pdf')">गुरु तथा शिष्य</a>
+<a href="#" onclick="openPDF('books/gyan-ki-talwar.pdf')">ज्ञान की तलवार</a>
+<a href="#" onclick="openPDF('books/isopanishad.pdf')">ईशोपनिषद</a>
+<a href="#" onclick="openPDF('books/janma-aur-mrutyu-se-pare.pdf')">जन्म और मृत्यु से परे</a>
+<a href="#" onclick="openPDF('books/kartik-mahimamrit.pdf')">कार्तिक महिमा अमृत</a>
+<a href="#" onclick="openPDF('books/krishnabhawnamrit-ki-prapti.pdf')">कृष्णभावनामृत की प्राप्ति</a>
+<a href="#" onclick="openPDF('books/krishnabhawnamrit-me-brahmacharya.pdf')">कृष्णभावनामृत में ब्रह्मचर्य</a>
+<a href="#" onclick="openPDF('books/krishna-ki-or.pdf')">कृष्ण की ओर</a>
+<a href="#" onclick="openPDF('books/kunti-maharani.pdf')">कुंती महारानी</a>
+<a href="#" onclick="openPDF('books/mukund-mala-stotra.pdf')">मुकुंद माला स्तोत्र</a>
+<a href="#" onclick="openPDF('books/narad-bhakti-sutra.pdf')">नारद भक्ति सूत्र</a>
+<a href="#" onclick="openPDF('books/prakrati-ke-niyam.pdf')">प्रकृति के नियम</a>
+<a href="#" onclick="openPDF('books/pralhad-maharaj-ke-divya-updesh.pdf')">प्रह्लाद महाराज के दिव्य उपदेश</a>
+<a href="#" onclick="openPDF('books/prem-pradip.pdf')">प्रेम प्रदीप</a>
+<a href="#" onclick="openPDF('books/punaragaman.pdf')">पुनरागमन</a>
+<a href="#" onclick="openPDF('books/purna-prashn-purn-uttar.pdf')">पूर्ण प्रश्न पूर्ण उत्तर</a>
+<a href="#" onclick="openPDF('books/rajvidya.pdf')">राजविद्या</a>
+<a href="#" onclick="openPDF('books/rashraj-krishna.pdf')">रसराज कृष्ण</a>
+<a href="#" onclick="openPDF('books/sarvottam-yog-paddhati.pdf')">सर्वोत्तम योग पद्धति</a>
+<a href="#" onclick="openPDF('books/shreemati-radharani.pdf')">श्रीमती राधारानी</a>
+<a href="#" onclick="openPDF('books/sri-upadesamrita.pdf')">श्री उपदेशामृत</a>
+<a href="#" onclick="openPDF('books/hare-krishna-challenge.pdf')">हरे कृष्ण चैलेंज</a>
+<a href="#" onclick="openPDF('books/vaishnav-sadachar.pdf')">वैष्णव सदाचार</a>
+<a href="#" onclick="openPDF('books/vaishnav-geet.pdf')">वैष्णव गीत</a>
 
 </div>
 
+<!-- PDF Modal -->
+<div id="pdfModal" class="modal">
+<div class="modal-content">
 
+<div class="pdf-top-bar">
+<button onclick="downloadPDF()">Download</button>
+<span onclick="closePDF()" class="close-btn">&times;</span>
+</div>
 
+<div id="pdfContainer"></div>
+
+</div>
+</div>
 
 <footer class="footer-section">
+<div class="mahamantra-container">
+<div class="mahamantra-text">
+🙏 Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Rama Hare Rama Rama Rama Hare Hare 🙏
+</div>
+</div>
 
-    <div class="mahamantra-container">
-        <div class="mahamantra-text">
-            🙏 Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Rama Hare Rama Rama Rama Hare Hare 🙏
-        </div>
-    </div>
-
-    <p class="haribol">हरि बोल 🙏</p>
-    <p>सेवा में — आयुषी</p>
-
-    <p>
-        यदि कोई बदलाव चाहिए तो संपर्क करें <br>
-        <strong>Your humble servant, Ayushi</strong><br>
-        📞 <a href="tel:8235856364">8235856364</a>
-    </p>
-
+<p class="haribol">हरि बोल 🙏</p>
+<p>सेवा में — आयुषी</p>
 </footer>
+
+<script>
+
+let currentPDF = '';
+
+function openPDF(pdfPath) {
+
+currentPDF = pdfPath;
+
+document.getElementById("pdfModal").style.display = "block";
+document.body.style.overflow = "hidden";
+
+loadPDF(pdfPath);
+}
+
+function closePDF() {
+document.getElementById("pdfModal").style.display = "none";
+document.getElementById("pdfContainer").innerHTML = "";
+document.body.style.overflow = "auto";
+}
+
+function downloadPDF() {
+window.open(currentPDF, '_blank');
+}
+
+async function loadPDF(url) {
+
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const loadingTask = pdfjsLib.getDocument(url);
+const pdf = await loadingTask.promise;
+
+const container = document.getElementById("pdfContainer");
+container.innerHTML = "";
+
+for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+
+const page = await pdf.getPage(pageNum);
+const viewport = page.getViewport({ scale: 1.2 });
+
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+
+canvas.height = viewport.height;
+canvas.width = viewport.width;
+
+container.appendChild(canvas);
+
+await page.render({
+canvasContext: context,
+viewport: viewport
+}).promise;
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
