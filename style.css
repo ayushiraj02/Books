@@ -146,6 +146,7 @@ background: white;
 margin: 0 auto;
 width: 100%;
 min-height: 100%;
+position: relative;
 }
 
 .pdf-top-bar {
@@ -182,3 +183,29 @@ max-width: 100%;
 margin-bottom: 15px;
 box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }   
+
+/* ===== PDF Loader ===== */
+
+.pdf-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10001;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #f28c28;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

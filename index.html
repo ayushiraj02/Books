@@ -1,3 +1,4 @@
+<!-- http://localhost:8000 -->
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -64,6 +65,11 @@
 <span onclick="closePDF()" class="close-btn">&times;</span>
 </div>
 
+<div id="pdfLoader" class="pdf-loader">
+    <div class="spinner"></div>
+    <p id="loaderText"></p>
+</div>
+
 <div id="pdfContainer"></div>
 
 </div>
@@ -83,6 +89,39 @@
 <script>
 
 let currentPDF = '';
+let loaderInterval;
+
+/* ============================= */
+/* Loader Text Animation */
+/* ============================= */
+
+function startLoaderTextAnimation() {
+
+const textElement = document.getElementById("loaderText");
+
+const messages = [
+"एक पल भी व्यर्थ न करें...",
+"हरे कृष्ण महामंत्र बोलते रहें 🙏",
+"🙏 Hare Krishna Hare Krishna Krishna Krishna Hare Hare 🙏"
+];
+
+let index = 0;
+textElement.innerText = messages[index];
+
+loaderInterval = setInterval(() => {
+index++;
+if (index >= messages.length) index = 0;
+textElement.innerText = messages[index];
+}, 2000); // 2 sec pause
+}
+
+function stopLoaderTextAnimation() {
+clearInterval(loaderInterval);
+}
+
+/* ============================= */
+/* Modal Functions */
+/* ============================= */
 
 function openPDF(pdfPath) {
 
@@ -90,6 +129,8 @@ currentPDF = pdfPath;
 
 document.getElementById("pdfModal").style.display = "block";
 document.body.style.overflow = "hidden";
+
+startLoaderTextAnimation();   // 👈 start devotional text
 
 loadPDF(pdfPath);
 }
@@ -104,19 +145,52 @@ function downloadPDF() {
 window.open(currentPDF, '_blank');
 }
 
+/* ============================= */
+/* PDF Loading */
+/* ============================= */
+
 async function loadPDF(url) {
+
+const loader = document.getElementById("pdfLoader");
+const container = document.getElementById("pdfContainer");
+
+loader.style.display = "block";
+container.innerHTML = "";
 
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc =
 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+try {
+
 const loadingTask = pdfjsLib.getDocument(url);
 const pdf = await loadingTask.promise;
 
-const container = document.getElementById("pdfContainer");
-container.innerHTML = "";
+/* Load First Page Fast */
 
-for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+const firstPage = await pdf.getPage(1);
+const viewport = firstPage.getViewport({ scale: 1.2 });
+
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+
+canvas.height = viewport.height;
+canvas.width = viewport.width;
+
+container.appendChild(canvas);
+
+await firstPage.render({
+canvasContext: context,
+viewport: viewport
+}).promise;
+
+/* Hide Loader After First Page */
+loader.style.display = "none";
+stopLoaderTextAnimation();
+
+/* Load Remaining Pages */
+
+for (let pageNum = 2; pageNum <= pdf.numPages; pageNum++) {
 
 const page = await pdf.getPage(pageNum);
 const viewport = page.getViewport({ scale: 1.2 });
@@ -133,6 +207,18 @@ await page.render({
 canvasContext: context,
 viewport: viewport
 }).promise;
+
+}
+
+} catch (error) {
+
+loader.style.display = "none";
+stopLoaderTextAnimation();
+
+container.innerHTML =
+"<p style='text-align:center;color:red;'>PDF खुलने में समस्या आ रही है।</p>";
+
+console.error(error);
 
 }
 
