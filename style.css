@@ -39,26 +39,96 @@ body {
 
 /* BOOK LIST */
 .book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.book-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    align-items: center;
 }
 
-.book-list a {
-    text-decoration: none;
+.book-card:hover {
+    transform: translateY(-10px);
+    filter: brightness(1.05);
+}
+
+.book-cover {
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
     background-color: #fff4e6;
-    color: #000;
-    padding: 18px;
-    margin-bottom: 14px;
-    font-size: 21px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-    font-weight: 500;
+    border: 2px solid #f28c28;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(242, 140, 40, 0.2);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.book-list a:active {
-    background-color: #ffe0c2;
+.book-card:hover .book-cover {
+    box-shadow: 0 8px 20px rgba(242, 140, 40, 0.4);
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-title {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    padding: 0 5px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .book-list {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .book-cover {
+        max-width: 130px;
+        height: 170px;
+    }
+
+    .book-title {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .book-list {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .book-list {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 22px;
+    }
 }
 
 /* FOOTER */
