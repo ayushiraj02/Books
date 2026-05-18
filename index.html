@@ -23,6 +23,13 @@
 <img src="images/prabhupada.jpg" class="logo-right">
 </header>
 
+<section class="featured-event-card" onclick="openPurushottamMonth()">
+  <div class="featured-event-badge">Special Event</div>
+  <h2>Purushottam Mass</h2>
+  <p>17 May to 15 June</p>
+  <p class="featured-event-note">Click to open reading plan and monthly guidance</p>
+</section>
+
 <div class="book-list">
 
 <div class="book-card" onclick="openPDF('books/anupam-uphar.pdf')">
@@ -230,6 +237,52 @@
 
 
 </div>
+<!-- Purushottam Month Modal -->
+<div id="purushottamModal" class="modal">
+<div class="modal-content purushottam-modal-content">
+
+<div class="pdf-top-bar">
+<button onclick="closePurushottamMonth()">Close</button>
+<span onclick="closePurushottamMonth()" class="close-btn">&times;</span>
+</div>
+
+<div class="purushottam-header">
+  <h2>Purushottam Mass</h2>
+  <p>17 May to 15 June</p>
+  <p class="purushottam-subtitle">Auspicious month for Krishna bhakti</p>
+</div>
+
+<div class="purushottam-panel">
+  <h3>What to do in this month</h3>
+  <ul id="purushottamTaskList">
+    <li>Content will be added here after you share the monthly actions.</li>
+  </ul>
+</div>
+
+<div class="purushottam-panel chapter-panel">
+  <div class="chapter-topline">
+    <h3>Reading Bhagavad Gita Chapter 15 - अध्याय 15 : पुरुषोत्तम योग</h3>
+    <span id="chapterProgress">1 / 10</span>
+  </div>
+
+  <div class="shloka-card">
+    <div class="shloka-number" id="shlokaNumber"></div>
+    <pre class="shloka-text" id="shlokaText"></pre>
+    <div class="shloka-meaning">
+      <h4>Meaning</h4>
+      <p id="shlokaMeaning"></p>
+    </div>
+  </div>
+
+  <div class="pagination-controls">
+    <button id="prevShlokaBtn" onclick="changeShloka(-1)">Previous</button>
+    <div class="pagination-dots" id="paginationDots"></div>
+    <button id="nextShlokaBtn" onclick="changeShloka(1)">Next</button>
+  </div>
+</div>
+
+</div>
+</div>
 <!-- PDF Modal -->
 <div id="pdfModal" class="modal">
 <div class="modal-content">
@@ -265,6 +318,60 @@
 let currentPDF = '';
 let loaderInterval;
 const fallbackCover = 'images/prabhupada.jpg';
+let currentShlokaIndex = 0;
+
+const chapter15Shlokas = [
+  {
+    number: 1,
+    text: 'Placeholder shloka 1\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 1 here.'
+  },
+  {
+    number: 2,
+    text: 'Placeholder shloka 2\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 2 here.'
+  },
+  {
+    number: 3,
+    text: 'Placeholder shloka 3\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 3 here.'
+  },
+  {
+    number: 4,
+    text: 'Placeholder shloka 4\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 4 here.'
+  },
+  {
+    number: 5,
+    text: 'Placeholder shloka 5\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 5 here.'
+  },
+  {
+    number: 6,
+    text: 'Placeholder shloka 6\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 6 here.'
+  },
+  {
+    number: 7,
+    text: 'Placeholder shloka 7\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 7 here.'
+  },
+  {
+    number: 8,
+    text: 'Placeholder shloka 8\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 8 here.'
+  },
+  {
+    number: 9,
+    text: 'Placeholder shloka 9\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 9 here.'
+  },
+  {
+    number: 10,
+    text: 'Placeholder shloka 10\nPaste your exact Sanskrit text here.',
+    meaning: 'Paste the exact meaning for shloka 10 here.'
+  }
+];
 
 document.querySelectorAll('.book-cover img').forEach((img) => {
 img.onerror = function() {
@@ -272,6 +379,53 @@ this.onerror = null;
 this.src = fallbackCover;
 };
 });
+
+function openPurushottamMonth() {
+document.getElementById('purushottamModal').style.display = 'block';
+document.body.style.overflow = 'hidden';
+currentShlokaIndex = 0;
+renderShloka();
+}
+
+function closePurushottamMonth() {
+document.getElementById('purushottamModal').style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+
+function changeShloka(direction) {
+const nextIndex = currentShlokaIndex + direction;
+if (nextIndex < 0 || nextIndex >= chapter15Shlokas.length) {
+    return;
+}
+
+currentShlokaIndex = nextIndex;
+renderShloka();
+}
+
+function renderShloka() {
+const shloka = chapter15Shlokas[currentShlokaIndex];
+document.getElementById('shlokaNumber').innerText = `Shloka ${shloka.number}`;
+document.getElementById('shlokaText').innerText = shloka.text;
+document.getElementById('shlokaMeaning').innerText = shloka.meaning;
+document.getElementById('chapterProgress').innerText = `${currentShlokaIndex + 1} / ${chapter15Shlokas.length}`;
+document.getElementById('prevShlokaBtn').disabled = currentShlokaIndex === 0;
+document.getElementById('nextShlokaBtn').disabled = currentShlokaIndex === chapter15Shlokas.length - 1;
+
+const dotsContainer = document.getElementById('paginationDots');
+dotsContainer.innerHTML = '';
+
+chapter15Shlokas.forEach((_, index) => {
+  const dot = document.createElement('button');
+  dot.className = index === currentShlokaIndex ? 'pagination-dot active' : 'pagination-dot';
+  dot.type = 'button';
+  dot.setAttribute('aria-label', `Go to shloka ${index + 1}`);
+  dot.onclick = () => {
+    currentShlokaIndex = index;
+    renderShloka();
+  };
+  dotsContainer.appendChild(dot);
+});
+}
 
 /* ============================= */
 /* Loader Text Animation */

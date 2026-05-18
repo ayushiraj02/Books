@@ -37,6 +37,54 @@ body {
     margin: 0;
 }
 
+/* FEATURED EVENT */
+.featured-event-card {
+    max-width: 1200px;
+    margin: 16px auto 0;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px solid #f28c28;
+    box-shadow: 0 10px 24px rgba(242, 140, 40, 0.18);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-event-card:hover {
+    transform: translateY(-2px);
+}
+
+.featured-event-card h2 {
+    margin: 0 0 6px;
+    font-size: 24px;
+    color: #8b4513;
+}
+
+.featured-event-card p {
+    margin: 0;
+    color: #5a3b1f;
+    font-size: 15px;
+}
+
+.featured-event-note {
+    margin-top: 8px !important;
+    font-weight: 600;
+}
+
+.featured-event-badge {
+    display: inline-block;
+    background: #f28c28;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 /* BOOK LIST */
 .book-list {
     display: grid;
@@ -217,6 +265,147 @@ margin: 0 auto;
 width: 100%;
 min-height: 100%;
 position: relative;
+}
+
+.purushottam-modal-content {
+    padding-bottom: 30px;
+}
+
+.purushottam-header {
+    padding: 18px 16px 8px;
+    text-align: center;
+    background: #fff8ef;
+    border-bottom: 1px solid #f3d1ab;
+}
+
+.purushottam-header h2 {
+    margin: 0;
+    color: #8b4513;
+}
+
+.purushottam-header p {
+    margin: 6px 0 0;
+}
+
+.purushottam-subtitle {
+    font-weight: 600;
+    color: #d35400;
+}
+
+.purushottam-panel {
+    max-width: 980px;
+    margin: 18px auto 0;
+    padding: 0 16px;
+}
+
+.purushottam-panel h3 {
+    margin-bottom: 10px;
+    color: #8b4513;
+}
+
+.purushottam-panel ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.chapter-panel {
+    margin-top: 22px;
+}
+
+.chapter-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.chapter-topline span {
+    font-weight: 700;
+    color: #d35400;
+}
+
+.shloka-card {
+    margin-top: 12px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #fffaf2;
+    border: 1px solid #f3d1ab;
+}
+
+.shloka-number {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #f28c28;
+    color: white;
+    font-weight: 700;
+}
+
+.shloka-text {
+    white-space: pre-wrap;
+    line-height: 1.7;
+    font-size: 16px;
+    margin: 0;
+    color: #2c2c2c;
+}
+
+.shloka-meaning {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed #e3b27d;
+}
+
+.shloka-meaning h4 {
+    margin: 0 0 8px;
+    color: #8b4513;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.pagination-controls button {
+    background: #f28c28;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+    background: #d7b08a;
+    cursor: not-allowed;
+}
+
+.pagination-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: #e4c8a8;
+    padding: 0;
+}
+
+.pagination-dot.active {
+    background: #f28c28;
 }
 
 .pdf-top-bar {
