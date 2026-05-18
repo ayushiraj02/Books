@@ -388,6 +388,28 @@ position: relative;
     border: 1px solid #f3d1ab;
 }
 
+.shloka-section {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+}
+
+.sanskrit-section .shloka-text {
+    font-size: 18px;
+    font-family: "Noto Sans Devanagari", "Mangal", serif;
+}
+
+.word-meanings-section {
+    font-size: 14px;
+    color: #3a3a3a;
+}
+
+.anuvaad-section, .tatparya-section, .gist-section {
+    font-size: 15px;
+    color: #2f2f2f;
+}
+
 .shloka-number {
     display: inline-block;
     margin-bottom: 12px;
