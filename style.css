@@ -43,21 +43,34 @@ body {
     margin: 16px auto 0;
     padding: 18px 20px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    background: linear-gradient(135deg, #fff6dd 0%, #ffd08a 45%, #ffb54d 100%);
     border: 2px solid #f28c28;
-    box-shadow: 0 10px 24px rgba(242, 140, 40, 0.18);
+    box-shadow: 0 12px 28px rgba(242, 140, 40, 0.28);
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    animation: eventPulse 2.8s ease-in-out infinite;
 }
 
 .featured-event-card:hover {
     transform: translateY(-2px);
 }
 
+.featured-event-card::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    pointer-events: none;
+}
+
 .featured-event-card h2 {
     margin: 0 0 6px;
-    font-size: 24px;
+    font-size: 26px;
     color: #8b4513;
 }
 
@@ -72,6 +85,20 @@ body {
     font-weight: 600;
 }
 
+.featured-event-cta {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(139, 69, 19, 0.9);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: 0 6px 14px rgba(139, 69, 19, 0.22);
+}
+
 .featured-event-badge {
     display: inline-block;
     background: #f28c28;
@@ -83,6 +110,18 @@ body {
     margin-bottom: 10px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    animation: badgeGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes eventPulse {
+    0%, 100% { box-shadow: 0 12px 28px rgba(242, 140, 40, 0.22); }
+    50% { box-shadow: 0 16px 34px rgba(242, 140, 40, 0.38); }
+}
+
+@keyframes badgeGlow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
 }
 
 /* BOOK LIST */
@@ -323,6 +362,22 @@ position: relative;
 .chapter-topline span {
     font-weight: 700;
     color: #d35400;
+}
+
+.chapter-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+}
+
+.chapter-title span:first-child {
+    font-size: 18px;
+}
+
+.chapter-title span:last-child {
+    font-size: 15px;
+    color: #8b4513;
 }
 
 .shloka-card {
