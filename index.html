@@ -9,6 +9,15 @@
 
 <!-- PDF.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+/* Pagination and shloka number visibility improvements */
+.shloka-number{font-size:1.1rem;font-weight:700;color:#222;margin:6px 0}
+.pagination-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px}
+.pagination-dots{display:flex;gap:6px;align-items:center}
+.pagination-dot{min-width:34px;height:34px;border-radius:6px;border:1px solid #ccc;background:#fff;color:#222;cursor:pointer;padding:4px 8px}
+.pagination-dot.active{background:#333;color:#fff;border-color:#333}
+.pagination-dot:disabled{opacity:0.5;cursor:not-allowed}
+</style>
 </head>
 <body>
 
@@ -207,7 +216,30 @@
 <div class="purushottam-panel">
   <h3>What to do in this month</h3>
   <ul id="purushottamTaskList">
-    <li>Content will be added here after you share the monthly actions.</li>
+    <h3>पुरुषोत्तम मास में क्या करें (सरल नियम)</h3>
+<p>यह महीना Krishna भक्ति, मन की शुद्धि और अच्छे संकल्पों के लिए बहुत शुभ माना जाता है।</p >
+
+<h4>करने योग्य बातें:</h4>
+<li>रोज सुबह जल्दी उठकर स्नान करें।</li>
+<li>भगवान कृष्ण का नाम जप करें:</li>
+<li>“हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे ।
+हरे राम हरे राम, राम राम हरे हरे ॥”</li>
+<li>रोज थोड़ा समय भगवद्गीता या कृष्ण कथा सुनने/पढ़ने में दें।
+<li>सात्विक भोजन करें।</li>
+<li>क्रोध, झूठ, चुगली और नकारात्मक बातें कम करें।</li>
+<li>मंदिर जाएँ या घर में दीपक जलाकर पूजा करें।</li>
+<li>एकादशी व्रत रखें (यदि स्वास्थ्य ठीक हो)।</li>
+<li>जरूरतमंद लोगों को दान करें — भोजन, कपड़े आदि।</li>
+<li>तुलसी पूजा करें और तुलसी को जल दें।</li>
+<li>मोबाइल/सोशल मीडिया पर समय कम देकर भक्ति में समय बढ़ाएँ।</li>
+<li>रोज भगवान को फल, मिठाई या साधारण भोग लगाएँ।</li>
+<li>मन में कोई एक अच्छा संकल्प लें और पूरे महीने पालन करें।</li>
+<h3>चीजों से बचें:</h3>
+  <li>नॉन-वेज, शराब, सिगरेट आदि।</li>
+  <li>ज्यादा गुस्सा और बहस।</li>
+  <li>किसी का अपमान या दिल दुखाना।</li>
+  <li>गलत आदतें और आलस्य।</li>
+</li>
   </ul>
 </div>
 
@@ -241,8 +273,6 @@
     </section>
 
     <section class="shloka-section gist-section">
-      <h4>Gist</h4>
-      <p id="shlokaGist"></p>
     </section>
   </div>
 
@@ -255,6 +285,7 @@
 
 </div>
 </div>
+
 <!-- PDF Modal -->
 <div id="pdfModal" class="modal">
 <div class="modal-content">
@@ -323,6 +354,7 @@ const chapter15Shlokas = [
   यह वृक्ष वास्तविक वृक्ष का प्रतिबिम्ब होने के कारण वास्तविक प्रतिरूप है | आध्यात्मिक जगत् में सब कुछ है | ब्रह्म को निर्विशेषवादी इस भौतिक वृक्ष का मूल मानते हैं और सांख्य दर्शन के अनुसार इसी मूल से पहले प्रकृति, पुरुष और तब तीन गुण निकलते हैं और फिर पाँच स्थूल तत्त्व (पंच महाभूत), फिर दस इन्द्रियाँ (दशेन्द्रिय), मन आदि | इस प्रकार वे सारे संसार को चौबीस तत्त्वों में विभाजित करते हैं | यदि ब्रह्म समस्त अभिव्यक्तियों का केन्द्र है, तो एक प्रकार से यह भौतिक जगत् १८० अंश (गोलार्द्ध) में है और दूसरे १८० अंश (गोलार्द्ध) में आध्यात्मिक जगत् है | चूँकि यह भौतिक जगत् उल्टा प्रतिबिम्ब है. अतः आध्यात्मिक जगत् में भी इस प्रकार की विविधता होनी चाहिए | प्रकृति परमेश्वर की बहिरंगा शक्ति है और पुरुष साक्षात् परमेश्वर है | इसकी व्याख्या भगवद्गीता में हो चुकी है | चूँकि यह अभिव्यक्ति भौतिक है, अतः क्षणिक है | प्रतिबिम्ब भी क्षणिक होता है, क्योंकि कभी वह दिखता है और कभी नहीं दिखता | परन्तु वह स्त्रोत जहाँ से यह प्रतिबिम्ब प्रतिबिम्बित होता है, शाश्र्वत है | वास्तविक वृक्ष के भौतिक प्रतिबिम्ब का विच्छेदन करना होता है | जब कोई कहता है कि अमुक व्यक्ति वेद जानता है, तो इससे यह समझा जाता है कि वह इस जगत् की आसक्ति से विच्छेद करना जानता है | यदि वह इस विधि को जानता है, तो समझिये कि वह वास्तव में वेदों को जानता है | जो व्यक्ति वेदों के कर्मकाण्ड द्वारा आकृष्ट होता है, वह इस वृक्ष की सुन्दर हरी पत्तियों से आकृष्ट होता है | वह वेदों के वास्तविक उद्देश्य को नहीं जानता | वेदों का उद्देश्य, भगवान् ने स्वयं प्रकट किया है और वह यह है इस प्रतिबिम्बित वृक्ष को काट कर आध्यात्मिक जगत् के वास्तविक वृक्ष को प्राप्त करना |
 
   `
+  },
   {
     number: 2,
     sanskrit: `Placeholder श्लोक 2 — संस्कृत यहाँ डालें।`,
@@ -434,7 +466,7 @@ function renderShloka() {
   document.getElementById('shlokaWordMeanings').innerText = shloka.wordMeanings || '';
   document.getElementById('shlokaAnuvaad').innerText = shloka.anuvaad || '';
   document.getElementById('shlokaTatparya').innerText = shloka.tatparya || '';
-  document.getElementById('shlokaGist').innerText = shloka.gist || '';
+  // gist removed: no UI element to populate
   document.getElementById('chapterProgress').innerText = `${currentShlokaIndex + 1} / ${chapter15Shlokas.length}`;
   document.getElementById('prevShlokaBtn').disabled = currentShlokaIndex === 0;
   document.getElementById('nextShlokaBtn').disabled = currentShlokaIndex === chapter15Shlokas.length - 1;
@@ -443,15 +475,17 @@ const dotsContainer = document.getElementById('paginationDots');
 dotsContainer.innerHTML = '';
 
 chapter15Shlokas.forEach((_, index) => {
-  const dot = document.createElement('button');
-  dot.className = index === currentShlokaIndex ? 'pagination-dot active' : 'pagination-dot';
-  dot.type = 'button';
-  dot.setAttribute('aria-label', `Go to shloka ${index + 1}`);
-  dot.onclick = () => {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'pagination-dot' + (index === currentShlokaIndex ? ' active' : '');
+  btn.setAttribute('aria-label', `Go to shloka ${index + 1}`);
+  btn.title = `श्लोक ${index + 1}`;
+  btn.innerText = index + 1;
+  btn.onclick = () => {
     currentShlokaIndex = index;
     renderShloka();
   };
-  dotsContainer.appendChild(dot);
+  dotsContainer.appendChild(btn);
 });
 }
 
