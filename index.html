@@ -222,9 +222,8 @@
 <h4>करने योग्य बातें:</h4>
 <li>रोज सुबह जल्दी उठकर स्नान करें।</li>
 <li>भगवान कृष्ण का नाम जप करें:</li>
-<li>“हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे ।
-हरे राम हरे राम, राम राम हरे हरे ॥”</li>
-<li>रोज थोड़ा समय भगवद्गीता या कृष्ण कथा सुनने/पढ़ने में दें।
+<li>“हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे । हरे राम हरे राम, राम राम हरे हरे ॥”</li>
+<li>रोज थोड़ा समय भगवद्गीता या कृष्ण कथा सुनने/पढ़ने में दें।</li>
 <li>सात्विक भोजन करें।</li>
 <li>क्रोध, झूठ, चुगली और नकारात्मक बातें कम करें।</li>
 <li>मंदिर जाएँ या घर में दीपक जलाकर पूजा करें।</li>
@@ -239,7 +238,6 @@
   <li>ज्यादा गुस्सा और बहस।</li>
   <li>किसी का अपमान या दिल दुखाना।</li>
   <li>गलत आदतें और आलस्य।</li>
-</li>
   </ul>
 </div>
 
@@ -443,15 +441,38 @@ this.src = fallbackCover;
 };
 });
 
+function showModal(modalId) {
+const modal = document.getElementById(modalId);
+if (!modal) {
+  return;
+}
+
+modal.style.display = 'block';
+modal.style.visibility = 'visible';
+modal.style.opacity = '1';
+}
+
+function hideModal(modalId) {
+const modal = document.getElementById(modalId);
+if (!modal) {
+  return;
+}
+
+modal.style.opacity = '0';
+modal.style.visibility = 'hidden';
+modal.style.display = 'none';
+}
+
 function openPurushottamMonth() {
-document.getElementById('purushottamModal').style.display = 'block';
+console.log("clicked");
+showModal('purushottamModal');
 document.body.style.overflow = 'hidden';
 currentShlokaIndex = 0;
 renderShloka();
 }
 
 function closePurushottamMonth() {
-document.getElementById('purushottamModal').style.display = 'none';
+hideModal('purushottamModal');
 document.body.style.overflow = 'auto';
 }
 
@@ -532,7 +553,7 @@ function openPDF(pdfPath) {
 
 currentPDF = pdfPath;
 
-document.getElementById("pdfModal").style.display = "block";
+showModal('pdfModal');
 document.body.style.overflow = "hidden";
 
 startLoaderTextAnimation();   // 👈 start devotional text
@@ -541,7 +562,7 @@ loadPDF(pdfPath);
 }
 
 function closePDF() {
-document.getElementById("pdfModal").style.display = "none";
+hideModal('pdfModal');
 document.getElementById("pdfContainer").innerHTML = "";
 document.body.style.overflow = "auto";
 }
@@ -607,7 +628,9 @@ stopLoaderTextAnimation();
 for (let pageNum = 2; pageNum <= pdf.numPages; pageNum++) {
 
 const page = await pdf.getPage(pageNum);
-const viewport = page.getViewport({ scale: 1.2 });
+// const viewport = page.getViewport({ scale: 1.2 });
+const scale = window.innerWidth < 768 ? 0.9 : 1.3;
+const viewport = page.getViewport({ scale });
 
 const canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
